@@ -28,7 +28,7 @@ async function createAirplane(req, res) {
 
         ErrorResponse.data = error;
         return res.
-                status(error.StatusCodes)
+                status(error.statusCode)
                 .json(ErrorResponse);
 
     }
