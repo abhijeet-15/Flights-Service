@@ -21,6 +21,34 @@ async function createCity(data) {
     }
 }
 
+async function getCities() {
+    console.log('This is calleds');
+    try {
+        const city = await cityRepository.getAll();
+        return city;
+    }
+
+    catch(error) {
+        throw new AppError('Cannot ftech data of all city ',
+            StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+async function getCity(id) {
+    try {
+        const city = await cityRepository.get(id);
+        return city;
+    }
+
+    catch(error) {
+        if(error.statusCode == StatusCodes.NOT_FOUND) {
+            throw new AppError('The city you requested does not exits', error?.statusCode);
+        }
+        throw new AppError('Cannot ftech data of all cities ',
+            StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 async function destroyCity(id) {
     try {
         const city = await cityRepository.destroy(id);
@@ -63,5 +91,7 @@ async function updateCity(id, data) {
 module.exports = {
     createCity,
     destroyCity,
-    updateCity
+    updateCity,
+    getCities,
+    getCity
 }

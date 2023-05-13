@@ -9,6 +9,12 @@ router.post('/',
     CityMiddlewares.validateCreateRequest,
     CityController.createCity);
 
+router.get('/',
+    CityController.getCities);
+
+router.get('/:id',
+    CityController.getCity);
+
 router.delete('/:id',
     CityController.destroyCity);
 
