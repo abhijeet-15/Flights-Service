@@ -47,6 +47,7 @@ async function createFlight(req, res) {
 async function getAllFlights(req, res) {
     try{
         const flights = await FlightService.getAllFlights(req.query);
+        //const airports = await flights.getAirports();
         SuccessResponse.data = flights;
         return res
                 .status(StatusCodes.CREATED)
