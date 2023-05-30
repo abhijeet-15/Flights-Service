@@ -73,6 +73,24 @@ function validateCreateRequest(req, res, next) {
     next(); 
 }
 
+function validateUpdateRemainingSeatsRequest(req, res, next) {
+    const missingFields = [];
+    if(!req.body.seats) {
+        missingFields.push('seats');
+    }
+
+    if(missingFields?.length > 0) {
+        ErrorResponse.message = 'Something went wrong while updating the airport';
+        ErrorResponse.error = new AppError([` ${missingFields.toString()} not found in the incoming request in the correct form`], StatusCodes.BAD_REQUEST);
+        return res
+                .status(StatusCodes.BAD_REQUEST)
+                .json(ErrorResponse);
+    }
+
+    next();
+}
+
 module.exports =  {
-    validateCreateRequest
+    validateCreateRequest,
+    validateUpdateRemainingSeatsRequest
 }
