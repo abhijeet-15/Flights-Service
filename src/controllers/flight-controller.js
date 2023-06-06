@@ -18,6 +18,7 @@ const { SuccessResponse, ErrorResponse } = require('../utils/common');
  * }
  */
 async function createFlight(req, res) {
+    console.log('controller');
     try {
         const flight = await FlightService.createFlight({
             flightNumber: req.body.flightNumber,

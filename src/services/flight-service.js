@@ -12,6 +12,7 @@ async function createFlight(data) {
         return flight;
     }
     catch(error) {
+        console.log(error);
         if(error.name === 'SequelizeValidationError') {
             let explanation = [];
             error?.errors.forEach((err) => {
